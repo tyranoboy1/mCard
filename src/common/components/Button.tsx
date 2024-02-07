@@ -7,6 +7,7 @@ import {
 } from '@/styles/buttonStlyes'
 import { css } from '@emotion/react'
 
+/** 버튼 공통 컴포넌트 */
 const Button = styled.button<IButtonProps>(
   {
     cursor: 'pointer',

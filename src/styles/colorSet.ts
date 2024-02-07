@@ -1,5 +1,6 @@
 import { css } from '@emotion/react'
 
+/** 색상 정보 */
 export const colorSet = css`
   :root {
     --red: #f44336;

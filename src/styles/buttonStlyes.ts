@@ -1,6 +1,8 @@
 import { css } from '@emotion/react'
 import { colors } from '@styles/colorSet'
 
+/** 버튼 스타일 */
+
 export const buttonColorMap = {
   primary: css`
     background-color: ${colors.blue};
