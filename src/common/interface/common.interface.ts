@@ -1,7 +1,7 @@
 import { ButtonColor, ButtonSize } from '@/styles/buttonStlyes'
 import { Colors } from '@/styles/colorSet'
 import { Typography } from '@/styles/typography'
-import { CSSProperties } from 'react'
+import { CSSProperties, InputHTMLAttributes } from 'react'
 
 /** 공통 컴포넌트 인터페이스 */
 export interface ITextProps {
@@ -19,4 +19,10 @@ export interface IButtonProps {
   weak?: boolean
   full?: boolean
   disabled?: boolean
+}
+
+export interface ITextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+  label?: React.ReactNode
+  isError?: boolean
+  helpMessage?: React.ReactNode
 }
