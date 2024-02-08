@@ -3,6 +3,11 @@ import { colorSet } from './colorSet'
 
 export default css`
   ${colorSet}
+
+  :root {
+    --dimmed-zindex: 10;
+    --alert-zindex: 11;
+  }
   html,
   body,
   div,

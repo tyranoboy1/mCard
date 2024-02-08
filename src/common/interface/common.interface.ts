@@ -26,3 +26,17 @@ export interface ITextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   isError?: boolean
   helpMessage?: React.ReactNode
 }
+
+export interface IFlexProps {
+  align?: CSSProperties['alignItems']
+  justify?: CSSProperties['justifyContent']
+  direction?: CSSProperties['flexDirection']
+}
+
+export interface IAlertProps {
+  open?: boolean
+  title: React.ReactNode
+  description?: React.ReactNode
+  buttonLabel?: string
+  onButtonClick: () => void
+}

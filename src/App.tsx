@@ -1,8 +1,12 @@
 import Text from '@common/components/Text'
-import Input from './common/components/Input'
-import TextField from './common/components/TextField'
+import Alert from '@/common/components/Alert'
+import Button from '@/common/components/Button'
+import Input from '@/common/components/Input'
+import TextField from '@/common/components/TextField'
+import { useAlertContext } from '@/context/AlertContext'
 
 function App() {
+  const { open } = useAlertContext()
   return (
     <div>
       <Text typography="t1" display="block">
@@ -16,6 +20,19 @@ function App() {
       <Input placeholder="로그아웃" aria-invalid />
       <TextField label="아이디" />
       <TextField label="아이디" isError={true} />
+
+      {/* <Alert title="알림" open={true} onButtonClick={() => {}} /> */}
+      <Button
+        onClick={() => {
+          open({
+            title: '카드신청완료',
+            description: '내역페이지',
+            onButtonClick: () => {},
+          })
+        }}
+      >
+        오픈
+      </Button>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { FocusEventHandler, forwardRef, useState } from 'react'
-import { ITextFieldProps } from '../interface/common.interface'
-import Input from './Input'
-import Text from './Text'
+import { ITextFieldProps } from '@/common/interface/common.interface'
+import Input from '@/common/components/Input'
+import Text from '@/common/components/Text'
 
 const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
   ({ label, isError, onFocus, onBlur, helpMessage, ...props }, ref) => {
