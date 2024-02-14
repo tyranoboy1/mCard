@@ -40,3 +40,8 @@ export interface IAlertProps {
   buttonLabel?: string
   onButtonClick: () => void
 }
+
+export interface ITopProps {
+  title: string
+  subTitle: string
+}

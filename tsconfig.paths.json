@@ -6,7 +6,11 @@
       "@components/*": ["src/components/*"],
       "@common/*": ["src/common/*"],
       "@styles/*": ["src/styles/*"],
-      "@context/*": ["src/context/*"]
+      "@context/*": ["src/context/*"],
+      "@models/*": ["src/models/*"],
+      "@pages/*": ["src/pages/*"],
+      "@remote/*": ["src/remote/*"],
+      "@constants": ["src/constants/index.ts"]
     }
   }
 }
