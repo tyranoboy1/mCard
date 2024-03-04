@@ -1,4 +1,4 @@
-export interface Card {
+export interface ICard {
   name: string
   corpName: string
   tags: string[]
@@ -10,7 +10,7 @@ export interface Card {
   payback?: string
 }
 
-export interface AdBanner {
+export interface IAdBanner {
   title: string
   description: string
   link: string
