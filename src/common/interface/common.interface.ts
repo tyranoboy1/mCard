@@ -45,3 +45,11 @@ export interface ITopProps {
   title: string
   subTitle: string
 }
+
+export interface IListRowProps {
+  left?: React.ReactNode
+  contents: React.ReactNode
+  right?: React.ReactNode
+  withArrow?: boolean
+  onClick?: () => void
+}

@@ -1,5 +1,5 @@
 import { COLLECTIONS } from '@/constants'
-import { ICard } from '@/models/card'
+import { IAdBanner } from '@/models/card'
 import { collection, getDocs } from 'firebase/firestore'
 import { store } from './firebase'
 
@@ -10,6 +10,6 @@ export const getAdBanners = async () => {
 
   return adBannerSnapshot.docs.map((doc) => ({
     id: doc.id,
-    ...(doc.data() as ICard),
+    ...(doc.data() as IAdBanner),
   }))
 }
