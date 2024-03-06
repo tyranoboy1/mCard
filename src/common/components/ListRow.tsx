@@ -6,7 +6,7 @@ import Text from './Text'
 const ListRow = (props: IListRowProps) => {
   const { left, contents, right, withArrow, onClick } = props
   return (
-    <Flex as="li" css={listRowContainerStyles} onClick={onClick}>
+    <Flex as="li" css={listRowContainerStyles} onClick={onClick} align="center">
       <Flex css={listRowLeftStyles}>{left}</Flex>
       <Flex css={listRowContentsStyles}>{contents}</Flex>
       <Flex>{right}</Flex>

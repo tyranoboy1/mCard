@@ -1,16 +1,69 @@
 import ListRow from '@/common/components/ListRow'
+import { getCards } from '@/remote/card'
+import { flatten } from 'lodash'
+import { useCallback } from 'react'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import { useInfiniteQuery } from 'react-query'
 
 const CardList = () => {
+  /** useInfiniteQuery를 사용하면 데이터 구조가 달라짐 */
+  const {
+    data,
+    hasNextPage = false,
+    fetchNextPage,
+    isFetching,
+  } = useInfiniteQuery(
+    ['cards'],
+    ({ pageParam }) => {
+      return getCards(pageParam)
+    },
+    {
+      getNextPageParam: (snapshot) => {
+        return snapshot.lastVisible
+      },
+    },
+  )
+
+  const loadMore = useCallback(() => {
+    if (hasNextPage === false || isFetching) {
+      return
+    }
+    fetchNextPage()
+  }, [fetchNextPage, hasNextPage, isFetching])
+
+  if (!data) {
+    return null
+  }
+  /** 달라진 데이터 구조 => 배열 평탄화 필요 */
+  const cards = flatten(data?.pages.map(({ items }) => items))
+
   return (
     <div>
-      <ul>
-        <ListRow
-          left={<div>left</div>}
-          contents={<ListRow.Texts title="타이틀" subTitle="서브 타이틀" />}
-          right={<div>right</div>}
-          withArrow={true}
-        />
-      </ul>
+      <InfiniteScroll
+        dataLength={cards.length}
+        hasMore={hasNextPage}
+        loader={<></>}
+        next={loadMore}
+        scrollThreshold="100px"
+      >
+        <ul>
+          {cards.map((card, index) => {
+            return (
+              <ListRow
+                key={card.id}
+                contents={
+                  <ListRow.Texts
+                    title={`${index + 1}위`}
+                    subTitle={card.name}
+                  />
+                }
+                right={card.payback != null ? <div>{card.payback}</div> : null}
+                withArrow={true}
+              />
+            )
+          })}
+        </ul>
+      </InfiniteScroll>
     </div>
   )
 }

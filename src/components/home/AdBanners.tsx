@@ -20,7 +20,7 @@ const AdBanners = () => {
       <Swiper spaceBetween={8}>
         {data?.map((item) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide key={item.id}>
               <Link to={item.link}>
                 <Flex direction="column" css={bannerContainerStyles}>
                   <Text bold={true}>{item.title}</Text>
