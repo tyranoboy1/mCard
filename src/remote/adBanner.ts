@@ -1,7 +1,7 @@
 import { COLLECTIONS } from '@/constants'
 import { IAdBanner } from '@/models/card'
 import { collection, getDocs } from 'firebase/firestore'
-import { store } from './firebase'
+import { store } from '@/remote/firebase'
 
 export const getAdBanners = async () => {
   const adBannerSnapshot = await getDocs(

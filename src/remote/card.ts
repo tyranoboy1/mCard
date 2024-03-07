@@ -10,7 +10,7 @@ import {
   QuerySnapshot,
   startAfter,
 } from 'firebase/firestore'
-import { store } from './firebase'
+import { store } from '@/remote/firebase'
 
 /** 모든 카드 데이터를 얻어오는 함수 */
 /** pageParam 지금 보이고 있는 맨 마지막 요소 */
