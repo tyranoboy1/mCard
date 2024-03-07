@@ -16,7 +16,7 @@ import { store } from './firebase'
 export const getCards = async (pageParam?: QuerySnapshot<ICard>) => {
   const cardQuery =
     pageParam == null
-      ? query(collection(store, COLLECTIONS.CARD), limit(20))
+      ? query(collection(store, COLLECTIONS.CARD), limit(10))
       : query(
           collection(store, COLLECTIONS.CARD),
           startAfter(pageParam),

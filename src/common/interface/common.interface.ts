@@ -53,3 +53,7 @@ export interface IListRowProps {
   withArrow?: boolean
   onClick?: () => void
 }
+
+export interface IBadge {
+  label: string
+}

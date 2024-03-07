@@ -1,3 +1,4 @@
+import Badge from '@/common/components/Badge'
 import ListRow from '@/common/components/ListRow'
 import { getCards } from '@/remote/card'
 import { flatten } from 'lodash'
@@ -57,7 +58,9 @@ const CardList = () => {
                     subTitle={card.name}
                   />
                 }
-                right={card.payback != null ? <div>{card.payback}</div> : null}
+                right={
+                  card.payback != null ? <Badge label={card.payback} /> : null
+                }
                 withArrow={true}
               />
             )
