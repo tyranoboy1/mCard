@@ -1,8 +1,7 @@
 import { css } from '@emotion/react'
-import React from 'react'
-import { ITopProps } from '../interface/common.interface'
-import Flex from './Flex'
-import Text from './Text'
+import { ITopProps } from '@/common/interface/common.interface'
+import Flex from '@/common/components/Flex'
+import Text from '@/common/components/Text'
 
 const Top = ({ title, subTitle }: ITopProps) => {
   return (

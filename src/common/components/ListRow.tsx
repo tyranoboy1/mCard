@@ -1,7 +1,7 @@
 import Flex from '@/common/components/Flex'
 import { css } from '@emotion/react'
-import { IListRowProps } from '../interface/common.interface'
-import Text from './Text'
+import { IListRowProps } from '@/common/interface/common.interface'
+import Text from '@/common/components/Text'
 
 const ListRow = (props: IListRowProps) => {
   const { left, contents, right, withArrow, onClick } = props

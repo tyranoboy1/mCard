@@ -1,8 +1,7 @@
 import { colors } from '@/styles/colorSet'
 import styled from '@emotion/styled'
-import React from 'react'
-import { IBadge } from '../interface/common.interface'
-import Text from './Text'
+import { IBadge } from '@/common/interface/common.interface'
+import Text from '@/common/components/Text'
 
 const Badge = (props: IBadge) => {
   const { label } = props
