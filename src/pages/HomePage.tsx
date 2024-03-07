@@ -2,7 +2,7 @@ import Top from '@/common/components/Top'
 import AdBanners from '@/components/home/AdBanners'
 import CardList from '@/components/home/CardList'
 
-const Home = () => {
+const HomePage = () => {
   return (
     <div>
       <Top title="혜택 좋은 카드" subTitle="회원님을 위해서 좋은 카드" />
@@ -12,4 +12,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomePage

@@ -2,6 +2,8 @@ import { COLLECTIONS } from '@/constants'
 import { ICard } from '@/models/card'
 import {
   collection,
+  doc,
+  getDoc,
   getDocs,
   limit,
   query,
@@ -10,7 +12,7 @@ import {
 } from 'firebase/firestore'
 import { store } from './firebase'
 
-/** 카드 데이터를 얻어오는 함수 */
+/** 모든 카드 데이터를 얻어오는 함수 */
 /** pageParam 지금 보이고 있는 맨 마지막 요소 */
 //TODO 데이터 초기 개수가 적으면 스크롤 안됌 이슈
 export const getCards = async (pageParam?: QuerySnapshot<ICard>) => {
@@ -32,4 +34,13 @@ export const getCards = async (pageParam?: QuerySnapshot<ICard>) => {
   }))
 
   return { items, lastVisible }
+}
+
+/** 특정 아이디의 카드의 데이터를 가져오는 함수 */
+export const getCard = async (id: string) => {
+  const snapshot = await getDoc(doc(store, COLLECTIONS.CARD, id))
+  return {
+    id,
+    ...(snapshot.data() as ICard),
+  }
 }

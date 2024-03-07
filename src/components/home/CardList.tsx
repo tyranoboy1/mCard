@@ -5,6 +5,7 @@ import { flatten } from 'lodash'
 import { useCallback } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useInfiniteQuery } from 'react-query'
+import { useNavigate } from 'react-router-dom'
 
 const CardList = () => {
   /** useInfiniteQuery를 사용하면 데이터 구조가 달라짐 */
@@ -24,6 +25,7 @@ const CardList = () => {
       },
     },
   )
+  const navigate = useNavigate()
 
   const loadMore = useCallback(() => {
     if (hasNextPage === false || isFetching) {
@@ -62,6 +64,7 @@ const CardList = () => {
                   card.payback != null ? <Badge label={card.payback} /> : null
                 }
                 withArrow={true}
+                onClick={() => navigate(`/card/${card.id}`)}
               />
             )
           })}
