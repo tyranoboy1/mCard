@@ -5,6 +5,7 @@ import Text from '@/common/components/Text'
 import Top from '@/common/components/Top'
 import { getCard } from '@/remote/card'
 import { css } from '@emotion/react'
+import { motion } from 'framer-motion'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 
@@ -29,13 +30,31 @@ const CardPage = () => {
       <ul>
         {data.benefit.map((item, index) => {
           return (
-            <ListRow
-              key={item}
-              left={<IconCheck />}
-              contents={
-                <ListRow.Texts title={`혜택 ${index + 1}`} subTitle={item} />
-              }
-            />
+            <motion.li
+              key={index}
+              initial={{
+                opacity: 0,
+                translateX: -90,
+              }}
+              transition={{
+                duration: 1.5,
+                ease: 'easeInOut',
+                delay: index * 0.1,
+              }}
+              animate={{
+                opacity: 1,
+                translateX: 0,
+              }}
+            >
+              <ListRow
+                as="div"
+                key={item}
+                left={<IconCheck />}
+                contents={
+                  <ListRow.Texts title={`혜택 ${index + 1}`} subTitle={item} />
+                }
+              />
+            </motion.li>
           )
         })}
       </ul>

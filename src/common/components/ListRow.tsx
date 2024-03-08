@@ -4,9 +4,9 @@ import { IListRowProps } from '@/common/interface/common.interface'
 import Text from '@/common/components/Text'
 
 const ListRow = (props: IListRowProps) => {
-  const { left, contents, right, withArrow, onClick } = props
+  const { left, contents, right, withArrow, onClick, as = 'li' } = props
   return (
-    <Flex as="li" css={listRowContainerStyles} onClick={onClick} align="center">
+    <Flex as={as} css={listRowContainerStyles} onClick={onClick} align="center">
       <Flex css={listRowLeftStyles}>{left}</Flex>
       <Flex css={listRowContentsStyles}>{contents}</Flex>
       <Flex>{right}</Flex>

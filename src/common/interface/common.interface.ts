@@ -52,6 +52,7 @@ export interface IListRowProps {
   right?: React.ReactNode
   withArrow?: boolean
   onClick?: () => void
+  as?: 'div' | 'li'
 }
 
 export interface IBadge {
