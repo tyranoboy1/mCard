@@ -58,3 +58,8 @@ export interface IListRowProps {
 export interface IBadge {
   label: string
 }
+
+export interface ISpacingProps {
+  size: number
+  direction?: 'vertical' | 'horizontal'
+}

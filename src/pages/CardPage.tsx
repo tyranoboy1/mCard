@@ -22,13 +22,13 @@ const CardPage = () => {
 
   const subTitle = data.promotion
     ? removeHtmlTag(data.promotion.title)
-    : data.tags.join(', ')
+    : data?.tags?.join(', ')
 
   return (
     <div>
       <Top title={`${data.corpName} ${data.name}`} subTitle={subTitle} />
       <ul>
-        {data.benefit.map((item, index) => {
+        {data.benefit?.map((item, index) => {
           return (
             <motion.li
               key={index}

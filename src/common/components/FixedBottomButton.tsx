@@ -6,9 +6,10 @@ import Button from '@/common/components/Button'
 interface FixedBottomButtonProps {
   label: string
   onClick: () => void
+  disabled?: boolean
 }
 const FixedBottomButton = (props: FixedBottomButtonProps) => {
-  const { label, onClick } = props
+  const { label, onClick, disabled } = props
 
   const $portalRoot = document.getElementById('root-portal')
   if (!$portalRoot) {
@@ -16,7 +17,13 @@ const FixedBottomButton = (props: FixedBottomButtonProps) => {
   }
   return createPortal(
     <Container>
-      <Button size="medium" full={true} onClick={onClick} css={buttonStyles}>
+      <Button
+        size="medium"
+        full={true}
+        onClick={onClick}
+        css={buttonStyles}
+        disabled={disabled}
+      >
         {label}
       </Button>
     </Container>,
