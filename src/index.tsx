@@ -6,6 +6,7 @@ import { Global } from '@emotion/react'
 import globalStyles from '@styles/globalStyles'
 import { AlertContextProvider } from '@/context/AlertContext'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import AuthCheck from '@/components/auth/AuthCheck'
 
 const client = new QueryClient({
   defaultOptions: {},
@@ -17,13 +18,11 @@ root.render(
     <Global styles={globalStyles} />
     <QueryClientProvider client={client}>
       <AlertContextProvider>
-        <App />
+        <AuthCheck>
+          <App />
+        </AuthCheck>
       </AlertContextProvider>
     </QueryClientProvider>
   </React.StrictMode>,
 )
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals()

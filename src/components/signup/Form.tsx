@@ -59,13 +59,13 @@ const Form = ({
       [e.target.name]: e.target.value,
     }))
   }, [])
+  const availableSubmit = Object.keys(errors).length === 0
 
   return (
     <Flex direction="column" css={formContainerStyles}>
       <TextField
         label="이메일"
         name="email"
-        placeholder="olaf@gmail.com"
         value={formValues.email}
         onChange={handleFormValues}
         isError={Boolean(enterInput.email) && Boolean(errors.email)}
@@ -102,7 +102,6 @@ const Form = ({
       <TextField
         label="이름"
         name="name"
-        placeholder="올라프"
         value={formValues.name}
         onChange={handleFormValues}
         isError={Boolean(enterInput.name) && Boolean(errors.name)}
@@ -111,7 +110,7 @@ const Form = ({
       />
       <FixedBottomButton
         label="회원가입"
-        disabled={false}
+        disabled={availableSubmit === false}
         onClick={() => {
           onSubmit(formValues)
         }}

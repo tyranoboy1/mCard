@@ -4,9 +4,9 @@ import HomePage from '@/pages/HomePage'
 import Test from './pages/Test'
 import ScrollToTop from '@/common/components/ScrollToTop'
 import SignUpPage from '@/pages/userPage/SignUpPage'
-import SignInPage from '@/pages/userPage/SignUpPage'
+
 import Navbar from '@common/components/Navbar'
-import MobileLayout from './common/layout/MobileLayout'
+import SignInPage from './pages/userPage/SignInPage'
 
 function App() {
   return (
