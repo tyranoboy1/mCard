@@ -4,10 +4,16 @@ import Spacing from '@/common/components/Spacing'
 import TextField from '@/common/components/TextField'
 import { IFormValues } from '@/models/signup'
 import { css } from '@emotion/react'
-import { ChangeEvent, useCallback, useMemo, useState } from 'react'
+import {
+  ChangeEvent,
+  MouseEventHandler,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react'
 import validator from 'validator'
 
-/** 유효성 검사해주는 함수 */
+/** 에러를 반환해주는 함수 */
 const validate = (pValue: IFormValues) => {
   let errors: Partial<IFormValues> = {}
   if (validator.isEmail(pValue.email) === false) {
@@ -29,11 +35,7 @@ const validate = (pValue: IFormValues) => {
   return errors
 }
 //TODO 파이어베이스 로그인 연동
-const Form = ({
-  onSubmit,
-}: {
-  onSubmit: (formValues: IFormValues) => void
-}) => {
+const Form = () => {
   /** Form에 필요한 상태 데이터 */
   const [formValues, setFormValues] = useState<IFormValues>({
     email: '',
@@ -109,13 +111,7 @@ const Form = ({
         helpMessage={Boolean(enterInput.name) ? errors.name : ''}
         onBlur={handleBlur}
       />
-      <FixedBottomButton
-        label="회원가입"
-        disabled={false}
-        onClick={() => {
-          onSubmit(formValues)
-        }}
-      />
+      <FixedBottomButton label="회원가입" disabled={true} onClick={() => {}} />
     </Flex>
   )
 }
