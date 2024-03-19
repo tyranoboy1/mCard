@@ -1,9 +1,35 @@
 import Form from '@/components/signup/Form'
+import { COLLECTIONS } from '@/constants'
+import { IFormValues } from '@/models/signup'
+import { auth, store } from '@/remote/firebase'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { collection, doc, setDoc } from 'firebase/firestore'
 
 const SignUpPage = () => {
+  /** 회원가입 버튼을 눌렀을때의 함수 */
+  const handleSubmit = async (formValues: IFormValues) => {
+    const { email, password, name } = formValues
+
+    /** 로그인 인증 처리 */
+    const { user } = await createUserWithEmailAndPassword(auth, email, password)
+
+    /** User의 displayName 업데이트 */
+    await updateProfile(user, {
+      displayName: name,
+    })
+
+    const newUser = {
+      uid: user.uid,
+      email: user.email,
+      displayName: name,
+    }
+
+    /** 새로운 User 데이터로 저장 */
+    await setDoc(doc(collection(store, COLLECTIONS.USER), user.uid), newUser)
+  }
   return (
     <div>
-      <Form />
+      <Form onSubmit={handleSubmit} />
     </div>
   )
 }
