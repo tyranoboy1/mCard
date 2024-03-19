@@ -4,8 +4,10 @@ import { IFormValues } from '@/models/signup'
 import { auth, store } from '@/remote/firebase'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { collection, doc, setDoc } from 'firebase/firestore'
+import { useNavigate } from 'react-router-dom'
 
 const SignUpPage = () => {
+  const navigate = useNavigate()
   /** 회원가입 버튼을 눌렀을때의 함수 */
   const handleSubmit = async (formValues: IFormValues) => {
     const { email, password, name } = formValues
@@ -26,6 +28,7 @@ const SignUpPage = () => {
 
     /** 새로운 User 데이터로 저장 */
     await setDoc(doc(collection(store, COLLECTIONS.USER), user.uid), newUser)
+    navigate('/')
   }
   return (
     <div>
