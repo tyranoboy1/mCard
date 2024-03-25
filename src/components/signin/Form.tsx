@@ -47,7 +47,6 @@ const Form = ({
       <TextField
         label="이메일"
         name="email"
-        placeholder="olaf@gmail.com"
         onChange={hadleFormValues}
         value={formValues.email}
       />

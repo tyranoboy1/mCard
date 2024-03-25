@@ -3,19 +3,39 @@ import Flex from '@/common/components/Flex'
 import ListRow from '@/common/components/ListRow'
 import Text from '@/common/components/Text'
 import Top from '@/common/components/Top'
+import { useAlertContext } from '@/context/AlertContext'
+import useUser from '@/hooks/auth/useUser'
 import { getCard } from '@/remote/card'
 import { css } from '@emotion/react'
 import { motion } from 'framer-motion'
+import { useCallback } from 'react'
 import { useQuery } from 'react-query'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const CardPage = () => {
   const { id = '' } = useParams()
+  const { open } = useAlertContext()
+  const user = useUser()
+  const navigate = useNavigate()
   /** 카드와 id값을 묶어서 캐시키를 만든다. */
   /** enabled 를 통해 데이터를 호출할지 안할지 정할수 있다. */
   const { data } = useQuery(['card', id], () => getCard(id), {
     enabled: id !== '',
   })
+
+  const moveToApply = useCallback(() => {
+    if (user === null) {
+      open({
+        title: '로그인이 필요한 기능입니다.',
+        onButtonClick: () => {
+          navigate(`/signin`)
+        },
+      })
+      return
+    }
+    navigate(`/apply/${id}`)
+  }, [id, navigate, open, user])
+
   if (!data) {
     return null
   }
@@ -64,7 +84,7 @@ const CardPage = () => {
           <Text typography="t7">{removeHtmlTag(data.promotion.terms)}</Text>
         </Flex>
       ) : null}
-      <FixedBottomButton label="신청하기" onClick={() => {}} />
+      <FixedBottomButton label="신청하기" onClick={moveToApply} />
     </div>
   )
 }
