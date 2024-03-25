@@ -2,8 +2,8 @@ import { colors } from '@/styles/colorSet'
 import { css } from '@emotion/react'
 import React from 'react'
 import { MouseEvent } from 'react'
-import Flex from './Flex'
-import Text from './Text'
+import Flex from '@/common/components/Flex'
+import Text from '@/common/components/Text'
 
 const Agreement = ({ children }: { children: React.ReactNode }) => {
   return (

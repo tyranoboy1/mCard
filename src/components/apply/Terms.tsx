@@ -5,6 +5,8 @@ import { MouseEvent } from 'react'
 import { useCallback, useState } from 'react'
 
 const Terms = ({ onNext }: { onNext: (terms: string[]) => void }) => {
+  // 각 약관에 대한 동의 여부 상태
+  // 초기 상태는 false로 설정
   const [termsAgreements, setTermsAgreements] = useState(() => {
     return termsList.reduce<Record<string, boolean>>(
       (prev, term) => ({
@@ -14,10 +16,9 @@ const Terms = ({ onNext }: { onNext: (terms: string[]) => void }) => {
       {},
     )
   })
+  /** 전체 약관 동의 클릭 버튼 함수 */
   const handleAllAgreement = useCallback(
     (_: MouseEvent<HTMLElement>, checked: boolean) => {
-      console.log('checked', checked)
-
       setTermsAgreements((prev) => {
         return Object.keys(prev).reduce(
           (prev, key) => ({
@@ -31,6 +32,7 @@ const Terms = ({ onNext }: { onNext: (terms: string[]) => void }) => {
     [],
   )
 
+  /** 모든 요소를 만족할때를 검사 */
   const allAgree = Object.values(termsAgreements).every((agree) => agree)
   return (
     <div>
