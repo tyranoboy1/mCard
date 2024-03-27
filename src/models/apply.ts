@@ -6,9 +6,29 @@ export interface ITerm {
   title: string
 }
 
+export const APPLY_STATUS = {
+  REDAY: 'REDAY',
+  PROGRESS: 'PROGRESS',
+  COMPLETE: 'COMPLETE',
+  REJECT: 'REJECT',
+} as const
+
 export interface IApplyValues {
   userId: IUser['uid']
   terms: Array<ITerm['id']>
   appliedAt: Date
   cardId: string
+  salary: string
+  creditScore: string
+  payDate: string
+  isMaster: boolean
+  isHipass: boolean
+  isRf: boolean
+  status: keyof typeof APPLY_STATUS
+  step: number
+}
+
+export interface IOption {
+  label: string
+  value: string | number | undefined
 }

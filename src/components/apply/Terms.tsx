@@ -1,10 +1,15 @@
 import Agreement from '@/common/components/Agreement'
 import FixedBottomButton from '@/common/components/FixedBottomButton'
 import { termsList } from '@/constants/apply'
+import { IApplyValues } from '@/models/apply'
 import { MouseEvent } from 'react'
 import { useCallback, useState } from 'react'
 
-const Terms = ({ onNext }: { onNext: (terms: string[]) => void }) => {
+const Terms = ({
+  onNext,
+}: {
+  onNext: (terms: IApplyValues['terms']) => void
+}) => {
   // 각 약관에 대한 동의 여부 상태
   // 초기 상태는 false로 설정
   const [termsAgreements, setTermsAgreements] = useState(() => {

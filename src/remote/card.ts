@@ -1,29 +1,29 @@
-import { COLLECTIONS } from '@/constants'
-import { ICard } from '@/models/card'
 import {
   collection,
+  getDocs,
+  QuerySnapshot,
+  query,
+  limit,
+  startAfter,
   doc,
   getDoc,
-  getDocs,
-  limit,
-  query,
-  QuerySnapshot,
-  startAfter,
 } from 'firebase/firestore'
-import { store } from '@/remote/firebase'
+import { store } from './firebase'
 
-/** 모든 카드 데이터를 얻어오는 함수 */
-/** pageParam 지금 보이고 있는 맨 마지막 요소 */
-//TODO 데이터 초기 개수가 적으면 스크롤 안됌 이슈
-export const getCards = async (pageParam?: QuerySnapshot<ICard>) => {
+import { COLLECTIONS } from '@constants'
+import { ICard } from '@models/card'
+
+// pageParam 지금 보이고있는 맨 마지막요소
+export async function getCards(pageParam?: QuerySnapshot<ICard>) {
   const cardQuery =
     pageParam == null
       ? query(collection(store, COLLECTIONS.CARD), limit(10))
       : query(
           collection(store, COLLECTIONS.CARD),
           startAfter(pageParam),
-          limit(1),
+          limit(10),
         )
+
   const cardSnapshot = await getDocs(cardQuery)
 
   const lastVisible = cardSnapshot.docs[cardSnapshot.docs.length - 1]
@@ -36,9 +36,9 @@ export const getCards = async (pageParam?: QuerySnapshot<ICard>) => {
   return { items, lastVisible }
 }
 
-/** 특정 아이디의 카드의 데이터를 가져오는 함수 */
-export const getCard = async (id: string) => {
+export async function getCard(id: string) {
   const snapshot = await getDoc(doc(store, COLLECTIONS.CARD, id))
+
   return {
     id,
     ...(snapshot.data() as ICard),
